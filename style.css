@@ -1,0 +1,85 @@
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */ 
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container Styling */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px hwb(0 0% 100% / 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Input Section */
+.input {
+    margin-bottom: 20px;
+}
+
+.input input {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+.input button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2575fc;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.input button:hover {
+    background-color: #1a5bb8;
+}
+
+/* Weather Box */
+.weather-box {
+    margin-top: 20px;
+}
+
+.weather-box .icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.weather-box .weather {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.weather-box .temperature {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.weather-box .description {
+    font-size: 16px;
+    font-style: italic;
+}
+
+ 
