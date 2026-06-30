@@ -5,30 +5,34 @@ const weather = document.querySelector('.weather');
 const temperature = document.querySelector('.temperature');
 const description = document.querySelector('.description');
 
-
 btn.addEventListener("click", function() {
-    city = input.value;
+    const city = input.value;
     getWeather(city);
-})
+});
 
-function getWeather(city){
-    console.log(city)
+async function getWeather(city) {
+    try {
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a2169bbd35ac039bdcf0c81869cde490&units=metric`
+        );
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${'a2169bbd35ac039bdcf0c81869cde490'}`)
-    .then(response=>response.json())
-    .then(data=>{
-        console.log(data)
+        if (!response.ok) {
+            throw new Error("City not found. Please check the spelling.");
+        }
+
+        const data = await response.json();
+
         const iconCode = data.weather[0].icon;
         icon.innerHTML = `<img src="http://openweathermap.org/img/wn/${iconCode}.png" alt="Weather Icon"/>`;
 
-        const weatherCity = data.name;
-        const weatherCountry = data.sys.country
-        weather.innerHTML = `${weatherCity}, ${weatherCountry}` 
+        weather.innerHTML = `${data.name}, ${data.sys.country}`;
+        temperature.innerHTML = `${Math.round(data.main.temp)}°C`;
+        description.innerHTML = `${data.weather[0].description}`;
 
-        const weatherTemp = Math.round(data.main.temp - 273.15);
-        temperature.innerHTML = `${weatherTemp}°C`
-
-        const weatherDescription = data.weather[0].description;
-        description.innerHTML = `${weatherDescription}`
-            })
+    } catch (error) {
+        icon.innerHTML = "";
+        weather.innerHTML = "";
+        temperature.innerHTML = "";
+        description.innerHTML = error.message;
+    }
 }
